@@ -24,7 +24,7 @@ android {
         minSdkVersion 15
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 25
+        targetSdkVersion 34
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         lintOptions {

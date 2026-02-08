@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -227,7 +228,11 @@ public class PluginHandler
         flt.addAction(Plugin.IDENTIFY);
         flt.addAction(Plugin.DATALIST);
         flt.addAction(Plugin.DATA);
-        getContext().registerReceiver(receiver, flt);
+        if (Build.VERSION.SDK_INT >= 34) {
+            getContext().registerReceiver(receiver, flt, Context.RECEIVER_EXPORTED);
+        } else {
+            getContext().registerReceiver(receiver, flt);
+        }
 
         // trigger plugin search
         identifyPlugins();
